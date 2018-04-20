@@ -1,0 +1,10 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <h3 class="first">{{title}}</h3>
+    <p-dropdown [options]="items" [(ngModel)]="selectedFish" placeholder="Select" optionLabel="name" [showClear]="true"></p-dropdown>
+    <button pButton label="Add" icon="fa-plus"></button>
+  </div>
+  <div class="ui-g-12">
+    <div *ngFor="let i of items">{{i.name}}</div>
+  </div>
+</div>

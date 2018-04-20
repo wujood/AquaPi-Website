@@ -1,0 +1,46 @@
+<p-panel header="Dashboard">
+  <div class="ui-g">
+      <div class="ui-g-6">  
+        <p-panel header="Sensors">
+          <div class="ui-g">
+            <div class="ui-g-6 setting">
+              Water-tempreture:
+            </div>
+            <div class="ui-g-6 setting">
+              {{watertemp}}
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-6 setting">
+              Air-tempreture:
+            </div>
+            <div class="ui-g-6 setting">
+              {{airtemp}}
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-6 setting">
+              Brightness:
+            </div>
+            <div class="ui-g-6 setting">
+              {{brightness}}
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-6 setting">
+              Water-Level:
+            </div>
+            <div class="ui-g-6 setting">
+              {{waterlevel}}
+              <p-slider [(ngModel)]="waterlevel"></p-slider>
+            </div>
+          </div>
+        </p-panel>
+        </div>
+        <div class="ui-g-6">
+            <p-panel header="Connection">
+              
+            </p-panel>
+        </div>
+  </div>
+  </p-panel>

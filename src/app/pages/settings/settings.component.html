@@ -1,0 +1,38 @@
+<p-panel header="Settings">
+  <p-panel header="Common" [toggleable]="true">
+    <div class="ui-g">
+      <div class="ui-g-6 setting">
+        Do you want to receive Push-Notifications?
+      </div>
+      <div class="ui-g-6 setting">
+        <p-toggleButton [(ngModel)]="checked"></p-toggleButton>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6 setting">
+        Brightness-Threshold to turn on grow-light 
+      </div>
+      <div class="ui-g-6 setting">
+        <p-slider [(ngModel)]="value"></p-slider>
+      </div>
+    </div>
+  </p-panel>
+  <p-panel header="Aquarium" [toggleable]="true">
+    <div class="ui-g">
+        <div class="ui-g-6 setting">
+          Fishes inside the tank:
+        </div>
+        <div class="ui-g-6 setting">
+            <view [title]="Fish" [items]="fishes" [entries]="fishes"></view>
+        </div>
+    </div>
+    <div class="ui-g">
+        <div class="ui-g-6 setting">
+          Plants on top of the tank:
+        </div>
+        <div class="ui-g-6 setting">
+            <view [title]="Plants" [items]="plants" [entries]="plants"></view>
+        </div>
+    </div>
+  </p-panel>
+</p-panel>
