@@ -11,12 +11,12 @@ import { PlantService } from '../../services/plant.service';
 })
 export class SettingsComponent {
 
-    
   fishes: ViewData[];
   plants: ViewData[];
   selectedCity: Fish;
 
-  value: number;
+  feedingFrequency: number;
+  brightnessThreshold: number;
 
   items = [
     {
@@ -36,7 +36,6 @@ export class SettingsComponent {
 ];
 
   constructor(private fishService: FishService, private plantService: PlantService) {
-      
       this.fishes = this.fishService.getFishItems();
       this.plants = this.plantService.getPlantItems();
   }

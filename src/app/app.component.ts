@@ -10,7 +10,7 @@ import { PlantService } from './services/plant.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    
+
     items = [
       {
           label: 'Settings',

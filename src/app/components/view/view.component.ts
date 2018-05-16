@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 
 export interface ViewData {
   name: string;
-  value: any
+  value: any;
 }
 
 @Component({
-  selector: 'view',
+  selector: 'app-view',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.css']
 })

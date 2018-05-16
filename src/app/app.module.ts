@@ -4,18 +4,20 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 import {SelectButtonModule} from 'primeng/selectbutton';
-import {SliderModule} from "primeng/slider";
+import {SliderModule} from 'primeng/slider';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {DropdownModule} from 'primeng/dropdown';
-import { PanelModule } from "primeng/panel";
-import { MenubarModule } from "primeng/menubar";
-import { ButtonModule } from "primeng/button";
+import { PanelModule } from 'primeng/panel';
+import { MenubarModule } from 'primeng/menubar';
+import { ButtonModule } from 'primeng/button';
 import { ViewComponent } from './components/view/view.component';
 import { FishService } from './services/fish.service';
 import { PlantService } from './services/plant.service';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SensorsService } from './services/sensors.service';
+import { StatusService } from './services/status.service';
+import { ApiModule } from '../swagger';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { SensorsService } from './services/sensors.service';
     DashboardComponent
   ],
   imports: [
+    ApiModule,
     BrowserModule,
     BrowserAnimationsModule,
     ToggleButtonModule,
@@ -38,7 +41,8 @@ import { SensorsService } from './services/sensors.service';
   providers: [
     FishService,
     PlantService,
-    SensorsService
+    SensorsService,
+    StatusService
   ],
   bootstrap: [AppComponent],
   schemas: [

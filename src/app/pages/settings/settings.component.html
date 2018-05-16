@@ -13,7 +13,7 @@
         Brightness-Threshold to turn on grow-light 
       </div>
       <div class="ui-g-6 setting">
-        <p-slider [(ngModel)]="value"></p-slider>
+        <p-slider [(ngModel)]="brightnessThreshold"></p-slider>
       </div>
     </div>
   </p-panel>
@@ -23,7 +23,7 @@
           Fishes inside the tank:
         </div>
         <div class="ui-g-6 setting">
-            <view [title]="Fish" [items]="fishes" [entries]="fishes"></view>
+          <app-view [title]="Fish" [items]="fishes" [entries]="fishes"></app-view>
         </div>
     </div>
     <div class="ui-g">
@@ -31,8 +31,16 @@
           Plants on top of the tank:
         </div>
         <div class="ui-g-6 setting">
-            <view [title]="Plants" [items]="plants" [entries]="plants"></view>
+          <app-view [title]="Plants" [items]="plants" [entries]="plants"></app-view>
         </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6 setting">
+        Feeding Frequency:
+      </div>
+      <div class="ui-g-6 setting">
+        <p-slider [(ngModel)]="feedingFrequency"></p-slider>
+      </div>
     </div>
   </p-panel>
 </p-panel>

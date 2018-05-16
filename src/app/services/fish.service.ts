@@ -5,7 +5,7 @@ import { ViewData } from '../components/view/view.component';
 @Injectable()
 export class FishService {
 
-  //TODO: Get Data from service
+  // TODO: Get Data from service
   fishes: ViewData[] = [
     {name: 'Goldfish', value: 'GF'},
     {name: 'Shrimp', value: 'SH'}
