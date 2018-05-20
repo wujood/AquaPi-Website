@@ -1,24 +1,53 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { ComponentSettings, ComponentSettingsService, WaterLevelSensor, Thermometer, LightSensor } from '../../swagger';
 
 @Injectable()
 export class SensorsService {
 
+  public updateEvents: EventEmitter<any>;
+
+  private currentComponentSettings: ComponentSettings;
+
   // TODO: Get real values!
-  constructor() { }
+  constructor(public api: ComponentSettingsService) {
+    this.currentComponentSettings = {
 
-  getWaterLevel(): number {
-    return 30;
+    };
+    this.updateEvents = new EventEmitter();
+    setInterval(() => {
+      this.updateValues();
+    }, 1000);
   }
 
-  getWaterTemp(): number {
-    return 20.1;
+  getWaterLevel(): WaterLevelSensor {
+    console.log(this.currentComponentSettings.waterlevelsensor);
+    return this.currentComponentSettings.waterlevelsensor;
   }
 
-  getAirTemp(): number {
-    return 24.3;
+  getWaterTemp(): Thermometer {
+    return this.currentComponentSettings.thermometer;
   }
 
-  getBrightness(): number {
-    return 67.4;
+  getAirTemp(): Thermometer {
+    return this.currentComponentSettings.thermometer;
+  }
+
+  getBrightness(): LightSensor {
+    return this.currentComponentSettings.lightsensor;
+  }
+
+  getTimestamp(): Date {
+    return this.currentComponentSettings.timestamp;
+  }
+
+  public updateValues() {
+    this.api.postComponentSettings().subscribe((result: ComponentSettings) => {
+      if (result != null && result !== undefined) {
+        this.currentComponentSettings = result;
+        this.updateEvents.emit(result);
+      }
+    }, (error: any) => {
+      console.error(error);
+    });
   }
 }

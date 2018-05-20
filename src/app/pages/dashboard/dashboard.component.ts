@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SensorsService } from '../../services/sensors.service';
 import { StatusService } from '../../services/status.service';
+import { ComponentSettings } from '../../../swagger';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,13 +17,17 @@ export class DashboardComponent implements OnInit {
   brightness;
   error;
 
-  constructor(private sensorService: SensorsService, private statusService: StatusService) { 
-    this.airtemp = this.sensorService.getAirTemp();
-    this.waterlevel = this.sensorService.getWaterLevel();
-    this.watertemp = this.sensorService.getWaterTemp();
-    this.brightness = this.sensorService.getBrightness();
-    this.error = this.statusService.hasError();
+  constructor(private sensorService: SensorsService, private statusService: StatusService) {
     // TODO finish
+    this.sensorService.updateEvents.subscribe(this.updateValues.bind(this));
+  }
+
+  updateValues(result: ComponentSettings) {
+    this.airtemp = result.thermometer.value;
+    this.waterlevel = result.waterlevelsensor ? result.waterlevelsensor.value : 0;
+    this.watertemp = result.thermometer ? result.thermometer.value : 0;
+    this.brightness = result.lightsensor ? result.lightsensor.value : 0;
+    this.error = this.statusService.hasError();
   }
 
   ngOnInit() {

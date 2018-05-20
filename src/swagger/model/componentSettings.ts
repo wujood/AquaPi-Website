@@ -23,15 +23,15 @@ import { WaterLevelSensor } from './waterLevelSensor';
  * Data structure that holds information about all used components. Also holds the Pi Id and a timestamp.
  */
 export interface ComponentSettings {
-    piId?: string;
+    piid?: string;
 
     timestamp?: Date;
 
-    waterFlowSensor?: WaterFlowSensor;
+    waterflowsensor?: WaterFlowSensor;
 
-    lightSensor?: LightSensor;
+    lightsensor?: LightSensor;
 
-    waterLevelSensor?: WaterLevelSensor;
+    waterlevelsensor?: WaterLevelSensor;
 
     thermometer?: Thermometer;
 
