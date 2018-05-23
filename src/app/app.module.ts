@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import {ChartModule} from 'primeng/chart';
 
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {SliderModule} from 'primeng/slider';
@@ -17,7 +18,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SensorsService } from './services/sensors.service';
 import { StatusService } from './services/status.service';
+import {GrowlModule} from 'primeng/growl';
 import { ApiModule } from '../swagger';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { ApiModule } from '../swagger';
     DropdownModule,
     PanelModule,
     MenubarModule,
-    ButtonModule
+    ButtonModule,
+    GrowlModule,
+    ChartModule
   ],
   providers: [
     FishService,

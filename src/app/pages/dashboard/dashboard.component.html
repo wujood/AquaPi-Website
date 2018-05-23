@@ -32,13 +32,28 @@
             </div>
             <div class="ui-g-6 setting">
               {{waterlevel}}
-              <p-slider [(ngModel)]="waterlevel"></p-slider>
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-6 setting">
+              Grow-light:
+            </div>
+            <div class="ui-g-6 setting">
+              {{lamp}}
             </div>
           </div>
         </p-panel>
         </div>
         <div class="ui-g-6">
             <p-panel header="Connection">
+              <div class="ui-g">
+                <div class="ui-g-6 setting">
+                  Aqua-Pi:
+                </div>
+                <div class="ui-g-6 setting">
+                  {{piid}}
+                </div>
+              </div>
               <div class="ui-g">
                 <div class="ui-g-6 setting">
                   Status:
@@ -52,10 +67,11 @@
                   Last value received:
                 </div>
                 <div class="ui-g-6 setting">
-                  18.05.2018
+                  {{latestTimestamp}}
                 </div>
               </div>
             </p-panel>
         </div>
   </div>
   </p-panel>
+  <p-growl [(value)]="msgs"></p-growl>
