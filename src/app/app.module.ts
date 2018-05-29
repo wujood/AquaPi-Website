@@ -3,6 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import {ChartModule} from 'primeng/chart';
+import { RouterModule, Routes } from '@angular/router';
 
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {SliderModule} from 'primeng/slider';
@@ -21,15 +22,27 @@ import { StatusService } from './services/status.service';
 import {GrowlModule} from 'primeng/growl';
 import { ApiModule } from '../swagger';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { ProfileComponent } from './pages/profile/profile.component';
+
+const appRoutes: Routes = [
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'settings',      component: SettingsComponent },
+  { path: 'profile',      component: ProfileComponent },
+  { path: '', component: DashboardComponent, pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewComponent,
     SettingsComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes
+    ),
     ApiModule,
     BrowserModule,
     BrowserAnimationsModule,

@@ -18,15 +18,18 @@ export class AppComponent {
           items: [
               {
                   label: 'Aquarium',
-                  icon: 'fa-water'
+                  icon: 'fa-water',
+                  routerLink: 'dashboard'
               },
               {
                   label: 'Profile',
-                  icon: 'fa-user'
+                  icon: 'fa-user',
+                  routerLink: 'profile'
               },
               {
                   label: 'Settings',
-                  icon: 'fa-gear'
+                  icon: 'fa-gear',
+                  routerLink: 'settings'
               }
           ]
       }
