@@ -7,8 +7,8 @@ export class FishService {
 
   // TODO: Get Data from service
   fishes: ViewData[] = [
-    {name: 'Goldfish', value: 'GF'},
-    {name: 'Shrimp', value: 'SH'}
+    {name: 'Goldfish', value: 'GF', amount: 0},
+    {name: 'Shrimp', value: 'SH', amount: 0}
   ];
 
   constructor() { }

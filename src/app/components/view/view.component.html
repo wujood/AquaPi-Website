@@ -5,6 +5,13 @@
     <button pButton label="Add" icon="fa-plus" (click)="add($event)"></button>
   </div>
   <div class="ui-g-12">
-    <div *ngFor="let i of items">{{i.name}}</div>
+    <div *ngFor="let i of items" class="ui-g-6">
+        <div class="ui-g-6">
+          {{i.name}}
+        </div>
+        <div class="ui-g-6">
+          {{i.amount}}
+        </div>  
+    </div>
   </div>
 </div>

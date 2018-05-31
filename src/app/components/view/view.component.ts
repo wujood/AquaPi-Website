@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 export interface ViewData {
   name: string;
   value: any;
+  amount?: number;
 }
 
 @Component({
@@ -29,8 +30,23 @@ export class ViewComponent implements OnInit {
   }
 
   add() {
-    this.items.push({...this.selectedItem});
-    this.selectedItem = undefined;
+    let isAlreadyCreated = false;
+    this.items.forEach((item) => {
+      if (item.name.valueOf() === this.selectedItem.name.valueOf()) {
+        isAlreadyCreated = true;
+        if (item.amount === undefined) {
+          item.amount = 1;
+        } else {
+          item.amount += 1;
+        }
+        return;
+      }
+    });
+    if(!isAlreadyCreated) {
+      this.selectedItem.amount = 0;
+      this.items.push({...this.selectedItem});
+    }
+
   }
 
 }

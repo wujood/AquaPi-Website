@@ -6,17 +6,17 @@ export class PlantService {
 
   // TODO: Get info from server
   plants: ViewData[] = [
-    {name: 'Parsley', value: 'PS'},
-    {name: 'Basil', value: 'BL'},
-    {name: 'Peppermint', value: 'PM'}
+    {name: 'Parsley', value: 'PS', amount: 0},
+    {name: 'Basil', value: 'BL', amount: 0},
+    {name: 'Peppermint', value: 'PM', amount: 0}
   ];
 
-  constructor() { 
+  constructor() {
 
   }
 
   getPlantItems(): ViewData[] {
-    return this.plants
+    return this.plants;
   }
 
   getPlantEntries(): ViewData[] {
