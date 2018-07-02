@@ -20,6 +20,7 @@ export class ViewComponent implements OnInit {
   @Input() placeholder = 'Select';
   @Input() entries: ViewData[];
   @Output() changedEntries = new EventEmitter<ViewData[]>();
+  @Output() showInformationDialog = new EventEmitter<any>();
 
   public selectedItem: ViewData;
 

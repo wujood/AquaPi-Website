@@ -17,5 +17,6 @@
   <p-footer>
     <p-dropdown [filter]="true" (onChange)="onChange($event)" [options]="items" [(ngModel)]="selectedItem" [placeholder]="placeholder" optionLabel="name" [showClear]="true"></p-dropdown>
     <button pButton label="Add" icon="fa-plus" (click)="add($event)"></button>
+    <app-information-dialog [currentFish]="selectedItem" (showInformationDialog)="showInformationDialog.emit($event)"></app-information-dialog>
   </p-footer>
 </p-card>

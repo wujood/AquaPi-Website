@@ -24,10 +24,12 @@ import { CardModule } from 'primeng/card';
 import { SpinnerModule } from 'primeng/spinner';
 import { OrderListModule } from 'primeng/orderlist';
 import { ApiModule } from '../swagger';
-import { MessageService } from 'primeng/components/common/messageservice';
+import {DialogModule} from 'primeng/dialog';
+
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { InformationDialogComponent } from './dialogs/information-dialog/information-dialog.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     ViewComponent,
     SettingsComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    InformationDialogComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -55,6 +58,7 @@ const appRoutes: Routes = [
     ToggleButtonModule,
     SliderModule,
     SelectButtonModule,
+    DialogModule,
     DropdownModule,
     OrderListModule,
     SpinnerModule,

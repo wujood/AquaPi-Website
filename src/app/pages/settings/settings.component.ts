@@ -116,4 +116,8 @@ export class SettingsComponent {
             this.plantService.addPlant(item);
         });
   }
+
+  showInformationDialog(e: any) {
+    console.log('test');
+  }
 }

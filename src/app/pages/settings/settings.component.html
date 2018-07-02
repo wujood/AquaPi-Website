@@ -59,7 +59,7 @@
           Fishes inside the tank:
         </div>
         <div class="ui-g-6 setting">
-          <app-view [title]="Fish" [items]="fishesInside" (changedEntries)="changedFishes($event)" [entries]="fishes" placeholder="Select fish"></app-view>
+          <app-view [title]="Fish" [items]="fishesInside" (changedEntries)="changedFishes($event)" (showInformationDialog)="showInformationDialog($event)" [entries]="fishes" placeholder="Select fish"></app-view>
         </div>
     </div>
     <div class="ui-g">

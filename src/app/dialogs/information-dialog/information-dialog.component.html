@@ -1,0 +1,56 @@
+<p-dialog [width]="500" header="Information" [(visible)]="display">
+    <div class="ui-g">
+      <div class="ui-g-6">  
+        Bild
+      </div>
+      <div class="ui-g-6">  
+        <h3>Name</h3>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6">
+        Neccesary Temperature:
+      </div>
+      <div class="ui-g-6">
+        10-23
+      </div>
+    </div>
+    <div class="ui-g">
+        <div class="ui-g-6">
+          Approximate Weight:
+        </div>
+        <div class="ui-g-6">
+          8g
+        </div>
+      </div>
+    <div class="ui-g">
+      <div class="ui-g-6">
+        Needed food:
+      </div>
+      <div class="ui-g-6">
+        Flakes / Frozen / Live
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6">
+        Needs Hidingspot:
+      </div>
+      <div class="ui-g-6">
+        yes
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6">
+        Minimum Quantity:
+      </div>
+      <div class="ui-g-6">
+        10
+      </div>
+    </div>
+
+    <p-footer>
+        <button type="text" (click)="hideDialog()" pButton label="OK"></button>
+    </p-footer>
+</p-dialog>
+<button *ngIf="currentFish !== undefined" type="icon" (click)="showDialog()" pButton icon="fa fa-info-circle"></button>
+
