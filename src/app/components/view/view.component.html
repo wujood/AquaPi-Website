@@ -1,17 +1,21 @@
-<div class="ui-g">
-  <div class="ui-g-12">
-    <h3 class="first">{{title}}</h3>
-    <p-dropdown (onChange)="onChange($event)" [options]="items" [(ngModel)]="selectedItem" [placeholder]="placeholder" optionLabel="name" [showClear]="true"></p-dropdown>
+<p-card class="ui-g-12">
+  <ng-container *ngFor="let i of items">
+    <div *ngIf="i.amount > 0">
+      <table>
+          <tr>
+            <td style="width: 70%">
+              {{i.name}}
+            </td>
+            <td style="width: 30%">
+              <p-spinner [name]="i.name" [(ngModel)]="i.amount" [min]="0" style="width: 60%" (onChange)="onSpinnerChange($event, i.name, i.amount)">
+              </p-spinner>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </ng-container>
+  <p-footer>
+    <p-dropdown [filter]="true" (onChange)="onChange($event)" [options]="items" [(ngModel)]="selectedItem" [placeholder]="placeholder" optionLabel="name" [showClear]="true"></p-dropdown>
     <button pButton label="Add" icon="fa-plus" (click)="add($event)"></button>
-  </div>
-  <div class="ui-g-12">
-    <div *ngFor="let i of items" class="ui-g-6">
-        <div class="ui-g-6">
-          {{i.name}}
-        </div>
-        <div class="ui-g-6">
-          {{i.amount}}
-        </div>  
-    </div>
-  </div>
-</div>
+  </p-footer>
+</p-card>

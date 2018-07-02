@@ -15,4 +15,6 @@
 export interface Feeder {
     value?: number;
 
+    message?: string;
+
 }

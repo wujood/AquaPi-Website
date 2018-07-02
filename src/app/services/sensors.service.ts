@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { ComponentSettings, ComponentSettingsService, WaterLevelSensor, Thermometer, LightSensor } from '../../swagger';
+import { ComponentSettings, ComponentSettingsService, WaterLevelSensor, Thermometer, LightSensor, ParamComponentSettingsPost } from '../../swagger';
 
 @Injectable()
 export class SensorsService {
@@ -7,11 +7,12 @@ export class SensorsService {
   public updateEvents: EventEmitter<any>;
 
   private currentComponentSettings: ComponentSettings;
+  private historyComponentSettings: ComponentSettings[];
 
   // TODO: Get real values!
   constructor(public api: ComponentSettingsService) {
     this.currentComponentSettings = {
-
+      piid: 'Fibonacci'
     };
     this.updateEvents = new EventEmitter();
     setInterval(() => {
@@ -25,11 +26,11 @@ export class SensorsService {
   }
 
   getWaterTemp(): Thermometer {
-    return this.currentComponentSettings.thermometer;
+    return this.currentComponentSettings.waterthermometer;
   }
 
   getAirTemp(): Thermometer {
-    return this.currentComponentSettings.thermometer;
+    return this.currentComponentSettings.airthermometer;
   }
 
   getBrightness(): LightSensor {
@@ -40,10 +41,14 @@ export class SensorsService {
     return this.currentComponentSettings.timestamp;
   }
 
+  getHistory(): ComponentSettings[] {
+    return this.historyComponentSettings;
+  }
+
   public updateValues() {
-    this.api.postComponentSettings().subscribe((result: ComponentSettings) => {
+    this.api.postComponentSettings({piid: 'Fibonacci'}).subscribe((result: ComponentSettings[]) => {
       if (result != null && result !== undefined) {
-        this.currentComponentSettings = result;
+        this.currentComponentSettings = result[0];
         this.updateEvents.emit(result);
       }
     }, (error: any) => {

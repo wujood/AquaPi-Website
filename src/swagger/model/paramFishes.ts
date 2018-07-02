@@ -12,9 +12,7 @@
 
 
 
-export interface WaterLevelSensor {
-    value?: number;
-
-    message?: string;
+export interface ParamFishes {
+    piid?: string;
 
 }

@@ -13,7 +13,43 @@
         Brightness-Threshold to turn on grow-light 
       </div>
       <div class="ui-g-6 setting">
-        <p-slider [(ngModel)]="brightnessThreshold"></p-slider>
+        <div>Percentage: {{brightnessThreshold}}</div>
+        <p-slider [(ngModel)]="brightnessThreshold" (onChange)="changedConfiguration()" [disabled]="!checked"></p-slider>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6 setting">
+        Acceptable Watertemperature-Range
+      </div>
+      <div class="ui-g-3 setting">
+        <div>Min: {{rangeValuesWater[0]}}°</div>
+        <p-slider [(ngModel)]="rangeValuesWater[0]" (onChange)="handleChangedWaterTemp($event)" [disabled]="!checked"></p-slider>
+      </div>
+      <div class="ui-g-3 setting">
+        <div>Max: {{rangeValuesWater[1]}}°</div>
+        <p-slider [(ngModel)]="rangeValuesWater[1]" (onChange)="handleChangedWaterTemp2($event)" [disabled]="!checked"></p-slider>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6 setting">
+        Acceptable Airtemperature-Range
+      </div>
+      <div class="ui-g-3 setting">
+        <div>Min: {{rangeValuesAir[0]}}°</div>
+        <p-slider [(ngModel)]="rangeValuesAir[0]" (onChange)="handleChangedAirTemp($event)" [disabled]="!checked"></p-slider>
+      </div>
+      <div class="ui-g-3 setting">
+        <div>Max: {{rangeValuesAir[1]}}°</div>
+        <p-slider [(ngModel)]="rangeValuesAir[1]" (onChange)="handleChangedAirTemp2($event)" [disabled]="!checked"></p-slider>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6 setting">
+        Feeding Frequency:
+      </div>
+      <div class="ui-g-6 setting">
+        <div>Minutes: {{feedingFrequency}}</div>
+        <p-slider [(ngModel)]="feedingFrequency" [min]="10" [max]="600" (onChange)="changedConfiguration()" [disabled]="!checked"></p-slider>
       </div>
     </div>
   </p-panel>
@@ -23,7 +59,7 @@
           Fishes inside the tank:
         </div>
         <div class="ui-g-6 setting">
-          <app-view [title]="Fish" [items]="fishes" [entries]="fishes" placeholder="Select fish"></app-view>
+          <app-view [title]="Fish" [items]="fishesInside" (changedEntries)="changedFishes($event)" [entries]="fishes" placeholder="Select fish"></app-view>
         </div>
     </div>
     <div class="ui-g">
@@ -31,16 +67,8 @@
           Plants on top of the tank:
         </div>
         <div class="ui-g-6 setting">
-          <app-view [title]="Plants" [items]="plants" [entries]="plants" placeholder="Select plant"></app-view>
+          <app-view [title]="Plants" [items]="plantsInside" (changedEntries)="changedPlants($event)" [entries]="plants" placeholder="Select plant"></app-view>
         </div>
-    </div>
-    <div class="ui-g">
-      <div class="ui-g-6 setting">
-        Feeding Frequency:
-      </div>
-      <div class="ui-g-6 setting">
-        <p-slider [(ngModel)]="feedingFrequency"></p-slider>
-      </div>
     </div>
   </p-panel>
 </p-panel>

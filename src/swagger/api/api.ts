@@ -1,7 +1,13 @@
 export * from './componentSettings.service';
 import { ComponentSettingsService } from './componentSettings.service';
+export * from './fishes.service';
+import { FishesService } from './fishes.service';
+export * from './plants.service';
+import { PlantsService } from './plants.service';
 export * from './post.service';
 import { PostService } from './post.service';
+export * from './pushConfiguration.service';
+import { PushConfigurationService } from './pushConfiguration.service';
 export * from './put.service';
 import { PutService } from './put.service';
-export const APIS = [ComponentSettingsService, PostService, PutService];
+export const APIS = [ComponentSettingsService, FishesService, PlantsService, PostService, PushConfigurationService, PutService];

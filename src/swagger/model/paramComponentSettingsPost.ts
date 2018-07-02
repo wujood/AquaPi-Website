@@ -12,9 +12,11 @@
 
 
 
-export interface WaterLevelSensor {
-    value?: number;
+export interface ParamComponentSettingsPost {
+    piid: string;
 
-    message?: string;
+    since?: Date;
+
+    until?: Date;
 
 }

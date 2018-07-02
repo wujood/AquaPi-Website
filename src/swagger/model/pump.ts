@@ -15,4 +15,6 @@
 export interface Pump {
     value?: number;
 
+    message?: string;
+
 }

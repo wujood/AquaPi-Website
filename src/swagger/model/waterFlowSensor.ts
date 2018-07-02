@@ -15,4 +15,6 @@
 export interface WaterFlowSensor {
     value?: number;
 
+    message?: string;
+
 }

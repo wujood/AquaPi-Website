@@ -19,6 +19,7 @@ import { Observable }                                        from 'rxjs/Observab
 import '../rxjs-operators';
 
 import { ComponentSettings } from '../model/componentSettings';
+import { ParamComponentSettingsPost } from '../model/paramComponentSettingsPost';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -29,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ComponentSettingsService {
 
-    protected basePath = 'http://localhost:8080/api';
+    protected basePath = 'http://aquapihome.ddns.net:8080/api';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
 
@@ -75,9 +76,10 @@ export class ComponentSettingsService {
     /**
      * Returns the current component settings
      * Returns the current component settings
+     * @param request Request object for this operation
      */
-    public postComponentSettings(extraHttpRequestParams?: any): Observable<ComponentSettings> {
-        return this.postComponentSettingsWithHttpInfo(extraHttpRequestParams)
+    public postComponentSettings(request: ParamComponentSettingsPost, extraHttpRequestParams?: any): Observable<Array<ComponentSettings>> {
+        return this.postComponentSettingsWithHttpInfo(request, extraHttpRequestParams)
             .map((response: Response) => {
                 if (response.status === 204) {
                     return undefined;
@@ -107,13 +109,18 @@ export class ComponentSettingsService {
     /**
      * Returns the current component settings
      * Returns the current component settings
+     * @param request Request object for this operation
      */
-    public postComponentSettingsWithHttpInfo(extraHttpRequestParams?: any): Observable<Response> {
+    public postComponentSettingsWithHttpInfo(request: ParamComponentSettingsPost, extraHttpRequestParams?: any): Observable<Response> {
         const path = this.basePath + '/ComponentSettings';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling postComponentSettings.');
+        }
 
         // to determine the Accept header
         let produces: string[] = [
@@ -121,9 +128,12 @@ export class ComponentSettingsService {
         ];
 
             
+        headers.set('Content-Type', 'application/json');
+
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Post,
             headers: headers,
+            body: request == null ? '' : JSON.stringify(request), // https://github.com/angular/angular/issues/10612
             search: queryParameters,
             withCredentials:this.configuration.withCredentials
         });

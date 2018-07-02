@@ -12,9 +12,13 @@
 
 
 
-export interface WaterLevelSensor {
-    value?: number;
+export interface Plants {
+    piid?: string;
 
-    message?: string;
+    plantid?: string;
+
+    name?: string;
+
+    quantity?: number;
 
 }

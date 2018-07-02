@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Spinner } from 'primeng/spinner';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface ViewData {
   name: string;
-  value: any;
+  value: string;
   amount?: number;
 }
 
@@ -17,16 +19,34 @@ export class ViewComponent implements OnInit {
   @Input() title: string;
   @Input() placeholder = 'Select';
   @Input() entries: ViewData[];
+  @Output() changedEntries = new EventEmitter<ViewData[]>();
 
   public selectedItem: ViewData;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+  }
 
   ngOnInit() {
   }
 
-  onChange(event) {
+  onChange(event: any) {
     this.selectedItem = event.value;
+    console.log(this.selectedItem);
+  }
+
+  onSpinnerChange(event: any, name, amount) {
+    this.items.forEach((item) => {
+      if (item.name.valueOf() === name.valueOf()) {
+        item.amount = amount;
+      }
+    });
+    this.changedEntries.emit(this.items);
+    console.log(name + ': ' + amount);
   }
 
   add() {
@@ -39,12 +59,14 @@ export class ViewComponent implements OnInit {
         } else {
           item.amount += 1;
         }
+        this.changedEntries.emit(this.items);
         return;
       }
     });
-    if(!isAlreadyCreated) {
+    if (!isAlreadyCreated) {
       this.selectedItem.amount = 0;
       this.items.push({...this.selectedItem});
+      this.changedEntries.emit(this.items);
     }
 
   }

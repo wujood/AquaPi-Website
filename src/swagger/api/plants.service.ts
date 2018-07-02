@@ -18,14 +18,8 @@ import { Response, ResponseContentType }                     from '@angular/http
 import { Observable }                                        from 'rxjs/Observable';
 import '../rxjs-operators';
 
-import { ComponentSettings } from '../model/componentSettings';
-import { Fishes } from '../model/fishes';
-import { ParamComponentSettingsPost } from '../model/paramComponentSettingsPost';
-import { ParamFishes } from '../model/paramFishes';
 import { ParamPlants } from '../model/paramPlants';
-import { ParamPushConfiguration } from '../model/paramPushConfiguration';
 import { Plants } from '../model/plants';
-import { PushConfiguration } from '../model/pushConfiguration';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -34,7 +28,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class PostService {
+export class PlantsService {
 
     protected basePath = 'http://aquapihome.ddns.net:8080/api';
     public defaultHeaders: Headers = new Headers();
@@ -80,38 +74,6 @@ export class PostService {
     }
 
     /**
-     * Returns the current component settings
-     * Returns the current component settings
-     * @param request Request object for this operation
-     */
-    public postComponentSettings(request: ParamComponentSettingsPost, extraHttpRequestParams?: any): Observable<Array<ComponentSettings>> {
-        return this.postComponentSettingsWithHttpInfo(request, extraHttpRequestParams)
-            .map((response: Response) => {
-                if (response.status === 204) {
-                    return undefined;
-                } else {
-                    return response.json() || {};
-                }
-            });
-    }
-
-    /**
-     * Returns the fishes that are inside the aquarium
-     * Returns the fishes that are inside the aquarium by name and quantity
-     * @param request Request object for this operation
-     */
-    public postFishes(request: ParamFishes, extraHttpRequestParams?: any): Observable<Array<Fishes>> {
-        return this.postFishesWithHttpInfo(request, extraHttpRequestParams)
-            .map((response: Response) => {
-                if (response.status === 204) {
-                    return undefined;
-                } else {
-                    return response.json() || {};
-                }
-            });
-    }
-
-    /**
      * Returns the plants in the soil
      * Returns the plants in the soil
      * @param request Request object for this operation
@@ -128,12 +90,12 @@ export class PostService {
     }
 
     /**
-     * Returns the current PushConfigurations
-     * Returns the current PushConfiguration
+     * Sets the number of plants
+     * Sets the number of plants
      * @param request Request object for this operation
      */
-    public postPushConfiguration(request: ParamPushConfiguration, extraHttpRequestParams?: any): Observable<PushConfiguration> {
-        return this.postPushConfigurationWithHttpInfo(request, extraHttpRequestParams)
+    public putPlants(request: Plants, extraHttpRequestParams?: any): Observable<{}> {
+        return this.putPlantsWithHttpInfo(request, extraHttpRequestParams)
             .map((response: Response) => {
                 if (response.status === 204) {
                     return undefined;
@@ -143,84 +105,6 @@ export class PostService {
             });
     }
 
-
-    /**
-     * Returns the current component settings
-     * Returns the current component settings
-     * @param request Request object for this operation
-     */
-    public postComponentSettingsWithHttpInfo(request: ParamComponentSettingsPost, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + '/ComponentSettings';
-
-        let queryParameters = new URLSearchParams();
-        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-
-        // verify required parameter 'request' is not null or undefined
-        if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling postComponentSettings.');
-        }
-
-        // to determine the Accept header
-        let produces: string[] = [
-            'application/json'
-        ];
-
-            
-        headers.set('Content-Type', 'application/json');
-
-        let requestOptions: RequestOptionsArgs = new RequestOptions({
-            method: RequestMethod.Post,
-            headers: headers,
-            body: request == null ? '' : JSON.stringify(request), // https://github.com/angular/angular/issues/10612
-            search: queryParameters,
-            withCredentials:this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
-        }
-
-        return this.http.request(path, requestOptions);
-    }
-
-    /**
-     * Returns the fishes that are inside the aquarium
-     * Returns the fishes that are inside the aquarium by name and quantity
-     * @param request Request object for this operation
-     */
-    public postFishesWithHttpInfo(request: ParamFishes, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + '/Fishes';
-
-        let queryParameters = new URLSearchParams();
-        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-
-        // verify required parameter 'request' is not null or undefined
-        if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling postFishes.');
-        }
-
-        // to determine the Accept header
-        let produces: string[] = [
-            'application/json'
-        ];
-
-            
-        headers.set('Content-Type', 'application/json');
-
-        let requestOptions: RequestOptionsArgs = new RequestOptions({
-            method: RequestMethod.Post,
-            headers: headers,
-            body: request == null ? '' : JSON.stringify(request), // https://github.com/angular/angular/issues/10612
-            search: queryParameters,
-            withCredentials:this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
-        }
-
-        return this.http.request(path, requestOptions);
-    }
 
     /**
      * Returns the plants in the soil
@@ -262,19 +146,19 @@ export class PostService {
     }
 
     /**
-     * Returns the current PushConfigurations
-     * Returns the current PushConfiguration
+     * Sets the number of plants
+     * Sets the number of plants
      * @param request Request object for this operation
      */
-    public postPushConfigurationWithHttpInfo(request: ParamPushConfiguration, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + '/PushConfiguration';
+    public putPlantsWithHttpInfo(request: Plants, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/Plants';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
         // verify required parameter 'request' is not null or undefined
         if (request === null || request === undefined) {
-            throw new Error('Required parameter request was null or undefined when calling postPushConfiguration.');
+            throw new Error('Required parameter request was null or undefined when calling putPlants.');
         }
 
         // to determine the Accept header
@@ -286,7 +170,7 @@ export class PostService {
         headers.set('Content-Type', 'application/json');
 
         let requestOptions: RequestOptionsArgs = new RequestOptions({
-            method: RequestMethod.Post,
+            method: RequestMethod.Put,
             headers: headers,
             body: request == null ? '' : JSON.stringify(request), // https://github.com/angular/angular/issues/10612
             search: queryParameters,

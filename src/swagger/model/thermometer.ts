@@ -15,4 +15,6 @@
 export interface Thermometer {
     value?: number;
 
+    message?: string;
+
 }

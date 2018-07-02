@@ -15,4 +15,6 @@
 export interface Lamp {
     value?: number;
 
+    message?: string;
+
 }

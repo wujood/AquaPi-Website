@@ -15,4 +15,6 @@
 export interface LightSensor {
     value?: number;
 
+    message?: string;
+
 }

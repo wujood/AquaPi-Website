@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewData } from '../../components/view/view.component';
 import { Fish } from '../../common/types';
-import { FishService } from '../../services/fish.service';
-import { PlantService } from '../../services/plant.service';
 
 @Component({
   selector: 'app-profile',
@@ -35,8 +33,6 @@ export class ProfileComponent {
     }
 ];
 
-  constructor(private fishService: FishService, private plantService: PlantService) {
-      this.fishes = this.fishService.getFishItems();
-      this.plants = this.plantService.getPlantItems();
+  constructor() {
   }
 }
