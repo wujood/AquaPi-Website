@@ -18,6 +18,7 @@ import { Response, ResponseContentType }                     from '@angular/http
 import { Observable }                                        from 'rxjs/Observable';
 import '../rxjs-operators';
 
+import { Messages } from '../model/messages';
 import { ParamPushConfiguration } from '../model/paramPushConfiguration';
 import { PushConfiguration } from '../model/pushConfiguration';
 
@@ -76,6 +77,22 @@ export class PushConfigurationService {
     /**
      * Returns the current PushConfigurations
      * Returns the current PushConfiguration
+     * @param request The piid that you are interested in
+     */
+    public postMessages(request: ParamPushConfiguration, extraHttpRequestParams?: any): Observable<Messages> {
+        return this.postMessagesWithHttpInfo(request, extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json() || {};
+                }
+            });
+    }
+
+    /**
+     * Returns the current PushConfigurations
+     * Returns the current PushConfiguration
      * @param request Request object for this operation
      */
     public postPushConfiguration(request: ParamPushConfiguration, extraHttpRequestParams?: any): Observable<PushConfiguration> {
@@ -105,6 +122,45 @@ export class PushConfigurationService {
             });
     }
 
+
+    /**
+     * Returns the current PushConfigurations
+     * Returns the current PushConfiguration
+     * @param request The piid that you are interested in
+     */
+    public postMessagesWithHttpInfo(request: ParamPushConfiguration, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/Messages';
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+
+        // verify required parameter 'request' is not null or undefined
+        if (request === null || request === undefined) {
+            throw new Error('Required parameter request was null or undefined when calling postMessages.');
+        }
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+            
+        headers.set('Content-Type', 'application/json');
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Post,
+            headers: headers,
+            body: request == null ? '' : JSON.stringify(request), // https://github.com/angular/angular/issues/10612
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
 
     /**
      * Returns the current PushConfigurations

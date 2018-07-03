@@ -21,4 +21,24 @@ export interface Fishes {
 
     quantity?: number;
 
+    mintemp?: number;
+
+    maxtemp?: number;
+
+    frostfood?: number;
+
+    flakefood?: number;
+
+    livefood?: number;
+
+    needshiding?: number;
+
+    helplink?: string;
+
+    piclink?: string;
+
+    minquantity?: number;
+
+    weight?: number;
+
 }

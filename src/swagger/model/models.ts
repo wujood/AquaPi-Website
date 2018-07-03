@@ -3,6 +3,8 @@ export * from './feeder';
 export * from './fishes';
 export * from './lamp';
 export * from './lightSensor';
+export * from './messages';
+export * from './messagesMessages';
 export * from './paramComponentSettingsPost';
 export * from './paramFishes';
 export * from './paramPlants';
