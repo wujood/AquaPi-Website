@@ -13,6 +13,8 @@ export class PlantService {
     {name: 'Peppermint', value: 'PM', amount: 0}
   ];
 
+  cache: Plants[];
+
   constructor(private api: PlantsService) {
 
   }
@@ -46,12 +48,13 @@ export class PlantService {
   }
 
   addPlant(plant: ViewData) {
-    this.api.putPlants({
-      piid: 'Fibonacci',
-      plantid: plant.value,
-      name: plant.name,
-      quantity: plant.amount
-    }).subscribe((r) => {
+    this.cache.forEach((f: Plants) => {
+      if (f.plantid === plant.value) {
+        const temp = {...f};
+        temp.piid = 'Fibonacci';
+        this.api.putPlants(temp).subscribe((r) => {
+        });
+      }
     });
   }
 }

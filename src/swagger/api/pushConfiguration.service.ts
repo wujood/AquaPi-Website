@@ -18,7 +18,7 @@ import { Response, ResponseContentType }                     from '@angular/http
 import { Observable }                                        from 'rxjs/Observable';
 import '../rxjs-operators';
 
-import { Messages } from '../model/messages';
+import { Message } from '../model/message';
 import { ParamPushConfiguration } from '../model/paramPushConfiguration';
 import { PushConfiguration } from '../model/pushConfiguration';
 
@@ -79,7 +79,7 @@ export class PushConfigurationService {
      * Returns the current PushConfiguration
      * @param request The piid that you are interested in
      */
-    public postMessages(request: ParamPushConfiguration, extraHttpRequestParams?: any): Observable<Messages> {
+    public postMessages(request: ParamPushConfiguration, extraHttpRequestParams?: any): Observable<Array<Message>> {
         return this.postMessagesWithHttpInfo(request, extraHttpRequestParams)
             .map((response: Response) => {
                 if (response.status === 204) {

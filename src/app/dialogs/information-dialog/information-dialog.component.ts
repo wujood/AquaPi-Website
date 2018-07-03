@@ -13,7 +13,6 @@ export class InformationDialogComponent implements OnInit {
   @Output() showInformationDialog = new EventEmitter<any>();
 
   constructor() {
-
   }
 
   ngOnInit() {

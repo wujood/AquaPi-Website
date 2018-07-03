@@ -12,14 +12,14 @@
 
 
 
-export interface MessagesMessages {
-    type?: MessagesMessages.TypeEnum;
+export interface Message {
+    messagetype?: Message.MessagetypeEnum;
 
-    message?: string;
+    text?: string;
 
 }
-export namespace MessagesMessages {
-    export enum TypeEnum {
+export namespace Message {
+    export enum MessagetypeEnum {
         Error = <any> 'error',
         Warning = <any> 'warning',
         Info = <any> 'info',

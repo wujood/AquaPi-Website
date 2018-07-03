@@ -25,11 +25,14 @@ import { SpinnerModule } from 'primeng/spinner';
 import { OrderListModule } from 'primeng/orderlist';
 import { ApiModule } from '../swagger';
 import {DialogModule} from 'primeng/dialog';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { InformationDialogComponent } from './dialogs/information-dialog/information-dialog.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
@@ -45,7 +48,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     DashboardComponent,
     ProfileComponent,
-    InformationDialogComponent
+    InformationDialogComponent,
+    MessagesComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -64,6 +68,8 @@ const appRoutes: Routes = [
     SpinnerModule,
     PanelModule,
     MenubarModule,
+    MessageModule,
+    MessagesModule,
     ButtonModule,
     FormsModule,
     GrowlModule,

@@ -13,8 +13,8 @@
         Brightness-Threshold to turn on grow-light 
       </div>
       <div class="ui-g-6 setting">
-        <div>Percentage: {{brightnessThreshold}}</div>
-        <p-slider [(ngModel)]="brightnessThreshold" (onChange)="changedConfiguration()" [disabled]="!checked"></p-slider>
+        <div>Threshold: {{brightnessThreshold}}</div>
+        <p-slider [(ngModel)]="brightnessThreshold" (mouseup)="changedConfiguration()" [disabled]="!checked" [min]="0" [max]="700"></p-slider>
       </div>
     </div>
     <div class="ui-g">
@@ -23,11 +23,11 @@
       </div>
       <div class="ui-g-3 setting">
         <div>Min: {{rangeValuesWater[0]}}°</div>
-        <p-slider [(ngModel)]="rangeValuesWater[0]" (onChange)="handleChangedWaterTemp($event)" [disabled]="!checked"></p-slider>
+        <p-slider [(ngModel)]="rangeValuesWater[0]" (mouseup)="handleChangedWaterTemp($event)" [disabled]="!checked"></p-slider>
       </div>
       <div class="ui-g-3 setting">
         <div>Max: {{rangeValuesWater[1]}}°</div>
-        <p-slider [(ngModel)]="rangeValuesWater[1]" (onChange)="handleChangedWaterTemp2($event)" [disabled]="!checked"></p-slider>
+        <p-slider [(ngModel)]="rangeValuesWater[1]" (mouseup)="handleChangedWaterTemp2($event)" [disabled]="!checked"></p-slider>
       </div>
     </div>
     <div class="ui-g">
@@ -36,11 +36,11 @@
       </div>
       <div class="ui-g-3 setting">
         <div>Min: {{rangeValuesAir[0]}}°</div>
-        <p-slider [(ngModel)]="rangeValuesAir[0]" (onChange)="handleChangedAirTemp($event)" [disabled]="!checked"></p-slider>
+        <p-slider [(ngModel)]="rangeValuesAir[0]" (mouseup)="handleChangedAirTemp($event)" [disabled]="!checked"></p-slider>
       </div>
       <div class="ui-g-3 setting">
         <div>Max: {{rangeValuesAir[1]}}°</div>
-        <p-slider [(ngModel)]="rangeValuesAir[1]" (onChange)="handleChangedAirTemp2($event)" [disabled]="!checked"></p-slider>
+        <p-slider [(ngModel)]="rangeValuesAir[1]" (mouseup)="handleChangedAirTemp2($event)" [disabled]="!checked"></p-slider>
       </div>
     </div>
     <div class="ui-g">
@@ -49,7 +49,7 @@
       </div>
       <div class="ui-g-6 setting">
         <div>Minutes: {{feedingFrequency}}</div>
-        <p-slider [(ngModel)]="feedingFrequency" [min]="10" [max]="600" (onChange)="changedConfiguration()" [disabled]="!checked"></p-slider>
+        <p-slider [(ngModel)]="feedingFrequency" [min]="10" [max]="600" (mouseup)="changedConfiguration()" [disabled]="!checked"></p-slider>
       </div>
     </div>
   </p-panel>

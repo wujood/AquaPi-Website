@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class FishService {
 
+  cache: Fishes[];
 
   constructor(private api: FishesService) {
   }
@@ -21,6 +22,7 @@ export class FishService {
           amount: 0
         });
       });
+      this.cache = result;
       return converted;
     });
   }
@@ -40,12 +42,14 @@ export class FishService {
   }
 
   addFish(fish: ViewData) {
-    this.api.putFishes({
-      piid: 'Fibonacci',
-      fishid: fish.value,
-      name: fish.name,
-      quantity: fish.amount
-    }).subscribe((r) => {
+    this.cache.forEach((f: Fishes) => {
+      if (f.fishid === fish.value) {
+        const temp = {...f};
+        temp.piid = 'Fibonacci';
+        temp.quantity = fish.amount;
+        this.api.putFishes(temp).subscribe((r) => {
+        });
+      }
     });
   }
 

@@ -35,11 +35,17 @@
             </div>
           </div>
           <div class="ui-g">
+              <p-message *ngIf="lamp != 0" severity="success" text="Grow-Lamp is on!"></p-message>
+              <p-message *ngIf="feeder != 0" severity="success" text="Feeding right now!"></p-message>
+          </div>
+        </p-panel>
+        <p-panel header="Controller">
+          <div class="ui-g">
             <div class="ui-g-6 setting">
-              Grow-light:
+              <button type="icon" (click)="startFeeding()" pButton icon="fa fa-cutlery" label="Start feeding"></button>
             </div>
             <div class="ui-g-6 setting">
-              {{lamp}}
+                <button type="icon" (click)="switchLamp()" pButton icon="fa fa-lightbulb-o" label="Switch lamp ON/OFF"></button>
             </div>
           </div>
         </p-panel>
@@ -70,6 +76,9 @@
                   {{latestTimestamp}}
                 </div>
               </div>
+            </p-panel>
+            <p-panel header="Messages">
+              <app-messages #messages [additionalMessages]="warnings"></app-messages>
             </p-panel>
         </div>
   </div>

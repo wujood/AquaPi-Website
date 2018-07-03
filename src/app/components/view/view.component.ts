@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Spinner } from 'primeng/spinner';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FishesService, Fishes } from '../../../swagger';
 
 export interface ViewData {
   name: string;
@@ -23,8 +24,9 @@ export class ViewComponent implements OnInit {
   @Output() showInformationDialog = new EventEmitter<any>();
 
   public selectedItem: ViewData;
+  informationObject: Fishes;
 
-  constructor(private http: HttpClient) {
+  constructor(private api: FishesService) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -37,6 +39,13 @@ export class ViewComponent implements OnInit {
 
   onChange(event: any) {
     this.selectedItem = event.value;
+    this.api.postFishes({}).subscribe((i: Fishes[]) => {
+      i.forEach((r: Fishes) => {
+        if (r.name === this.selectedItem.name) {
+          this.informationObject = r;
+        }
+      });
+    });
     console.log(this.selectedItem);
   }
 

@@ -3,7 +3,7 @@ import { ViewData } from '../../components/view/view.component';
 import { Fish } from '../../common/types';
 import { FishService } from '../../services/fish.service';
 import { PlantService } from '../../services/plant.service';
-import { PushConfigurationService } from '../../../swagger';
+import { PushConfigurationService, FishesService } from '../../../swagger';
 
 @Component({
   selector: 'app-settings',
@@ -43,10 +43,10 @@ export class SettingsComponent {
 ];
 
   constructor(private fishService: FishService, private plantService: PlantService, private configService: PushConfigurationService) {
-    this.fishService.getFishItems().subscribe((r) => { this.fishes = r; });
-    this.fishService.getFishEntries().subscribe((r) => { this.fishesInside = r; });
-    this.plantService.getPlantItems().subscribe((r) => { this.plants = r; });
-    this.plantService.getPlantEntries().subscribe((r) => { this.plantsInside = r; });
+    this.fishService.getFishItems().subscribe((r: ViewData[]) => { this.fishesInside = r; });
+    this.fishService.getFishEntries().subscribe((r: ViewData[]) => { this.fishes = r; });
+    this.plantService.getPlantItems().subscribe((r: ViewData[]) => { this.plantsInside = r; });
+    this.plantService.getPlantEntries().subscribe((r: ViewData[]) => { this.plants = r; });
     this.configService.postPushConfiguration({piid: 'Fibonacci'}).subscribe((result) => {
         this.checked = (result.togglepushnotifications === 1) ? true : false;
         this.feedingFrequency = result.feederfrequency;
@@ -109,15 +109,13 @@ export class SettingsComponent {
         e.forEach((item) => {
         this.fishService.addFish(item);
         });
+        this.fishService.getFishEntries().subscribe((r: ViewData[]) => { this.fishes = r; });
     }
 
   changedPlants(e: ViewData[]) {
         e.forEach((item) => {
             this.plantService.addPlant(item);
         });
-  }
-
-  showInformationDialog(e: any) {
-    console.log('test');
+        this.plantService.getPlantEntries().subscribe((r: ViewData[]) => { this.plants = r; });
   }
 }
